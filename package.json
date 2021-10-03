@@ -1,0 +1,24 @@
+{
+  "name": "lab",
+  "version": "1.0.0",
+  "description": "lab01",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weed2021/Lab.git"
+  },
+  "author": "FX12493",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weed2021/Lab/issues"
+  },
+  "homepage": "https://github.com/weed2021/Lab#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

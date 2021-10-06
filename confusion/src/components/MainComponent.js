@@ -1,9 +1,11 @@
 import React,{Component} from 'react';
 
-import {Navbar, NavbarBrand,Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
+import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 import Menu from './MenuComponent';
 import { DISHES } from '../shared/dishes';
 import Moment from "react-moment";
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 
 class App extends Component{
     constructor(props){
@@ -61,11 +63,8 @@ class App extends Component{
     render(){
         return(
         <div >
-            <Navbar dark color = "primary">
-            <div className="container">
-                <NavbarBrand href="/">Lab04</NavbarBrand>
-            </div>
-            </Navbar>
+            <Header />
+            
             <Menu dishes={this.state.dishes}
                 onClick={(dish)=>this.onDishSelect(dish)}
             />
@@ -73,7 +72,7 @@ class App extends Component{
             <div className="container">
                 {this.renderDish(this.state.selectedDish)}
             </div>
-            
+            <Footer />
         </div>
         );
 

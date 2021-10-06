@@ -26,9 +26,7 @@ class App extends Component{
                             <i>-- {comment.author} {"-- "}
                             <Moment format="MMM DD,YYYY">{comment.date}</Moment>
                             </i>
-                        </p>
-                           
-                        
+                        </p>  
                     </div>
                 );
             })

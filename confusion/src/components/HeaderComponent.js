@@ -1,16 +1,57 @@
 import React,{Component} from "react";
-import {Navbar, NavbarBrand, Jumbotron} from 'reactstrap';
+import {Navbar, NavbarBrand, Jumbotron, Nav,NavbarToggler,Collapse,NavItem} from 'reactstrap';
+import {NavLink} from 'react-router-dom';
+import Home from "./HomeComponent";
+
 class Header extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            isNavOpen:false
+        };
+
+        this.toogleNav=this.toogleNav.bind(this)
+    }
+    toogleNav(){
+        this.setState({
+            isNavOpen: !this.state.isNavOpen
+        })
+    }
     render(){
         return(
             <React.Fragment>
 
-                <Navbar dark >
-                    <div className="container">
-                        <NavbarBrand href="/">
-                            <h2>Lab05</h2>
+                <Navbar dark expand='md'>
+                    <div className="container" >
                         
+                        <NavbarBrand className='mr-auto' href="/">
+                            <img src="assets/images/logo.png" height="30" width="41" alt="Ristorante Con Fusion" />
                         </NavbarBrand>
+                        <NavbarToggler onClick={this.toogleNav} />
+                        <Collapse navbar isOpen={this.state.isNavOpen}>
+                            <Nav navbar>
+                                <NavItem className='px-3'>
+                                    <NavLink className='nav-link' to='/home'>
+                                        <span className='fa fa-home'></span> Home
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem className='px-3'>
+                                    <NavLink className='nav-link' to='/aboutus'>
+                                        About Us
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem className='px-3'>
+                                    <NavLink className='nav-link' to='/menu'>
+                                        Menu
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem className='px-3'>
+                                    <NavLink className='nav-link' to='/contact'>
+                                        Contact
+                                    </NavLink>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
                     </div>
                 </Navbar>
 

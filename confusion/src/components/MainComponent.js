@@ -6,19 +6,25 @@ import { DISHES } from '../shared/dishes';
 import Moment from "react-moment";
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
+import Home from './HomeComponent';
+import {BrowserRouter,Switch,Route,Redirect} from 'react-router-dom';
 
 class App extends Component{
     constructor(props){
         super(props);
         this.state={
         dishes: DISHES,
-        selectedDish: null
+        // selectedDish: null
         };
     }
 
-    onDishSelect(dish){
-        this.setState({selectedDish:dish})
-    }
+    // onDishSelect(dish){
+    //     this.setState({selectedDish:dish})
+    // }
+
+    // <div className="container">
+    //             {this.renderDish(this.state.selectedDish)}
+    //         </div>
     renderDish(dish){
         if(dish!=null){
             const comments = dish.comments.map((comment)=>{
@@ -60,20 +66,28 @@ class App extends Component{
         }
     }
 
-    render(){
-        return(
-        <div >
-            <Header />
-            
-            <Menu dishes={this.state.dishes}
-                onClick={(dish)=>this.onDishSelect(dish)}
-            />
 
-            <div className="container">
-                {this.renderDish(this.state.selectedDish)}
+    render(){
+
+        const HomePage=()=>{
+            return (
+                <Home />
+            );
+        }
+        return(
+            <div >
+                <BrowserRouter>
+                    <Header />
+                    <Switch>
+                        
+                        <Route path='/home' component={HomePage}/>
+                        <Route path='/menu' component={()=><Menu dishes={this.state.dishes} />} />
+                        <Redirect to='/home' />
+                        
+                    </Switch>
+                    <Footer />
+                </BrowserRouter>
             </div>
-            <Footer />
-        </div>
         );
 
     }

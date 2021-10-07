@@ -1,5 +1,6 @@
 import React from "react";
-import {Card, CardImg, CardBody, CardTitle} from "reactstrap";
+import {Card, CardImg, CardBody, CardTitle, Breadcrumb,BreadcrumbItem} from "reactstrap";
+import { Link } from "react-router-dom";
 
     function RenderMenuItem({dish,onClick}){
         return(
@@ -8,7 +9,8 @@ import {Card, CardImg, CardBody, CardTitle} from "reactstrap";
                 <CardBody>
                     <CardTitle tag='h5'>{dish.name}</CardTitle>
                 </CardBody>
-                <button onClick={()=>onClick(dish)}  className="btn btn-primary">See Details</button>
+                <Link to={`/menu/${dish.id}`}><button  className="btn btn-primary">See Details</button></Link>
+                
             </Card>
         );
     }
@@ -23,6 +25,16 @@ import {Card, CardImg, CardBody, CardTitle} from "reactstrap";
         });
         return(
             <div className="container">
+                <div className="row">
+                    <Breadcrumb className='col-md-12'>
+                        <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Menu</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>Menu</h3>
+                        <hr />
+                    </div>
+                </div>
                 <div className="row" >
                         {menu}
                 </div>

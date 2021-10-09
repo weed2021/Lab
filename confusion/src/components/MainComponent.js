@@ -12,7 +12,7 @@ import Contact from './ContactComponent';
 import DishDetail from './DishdetailComponent';
 import {BrowserRouter,Switch,Route,Redirect} from 'react-router-dom';
 
-class App extends Component{
+class Main extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -33,12 +33,14 @@ class App extends Component{
             );
         }
         const DishWithId = ({match}) =>{
+            console.log(match.params)
             return(
                 <DishDetail dish= {this.state.dishes.filter((dish)=>dish.id===parseInt(match.params.dishId,10))[0]}
                 
                 
                 comments={this.state.comments.filter((comment)=>comment.dishId===parseInt(match.params.dishId,10))}
                 />
+                
             );
             
         }
@@ -65,4 +67,4 @@ class App extends Component{
 }
 
 
-export default App;
+export default Main;

@@ -1,29 +1,50 @@
 import React from "react";
-import {Card, CardImg, CardBody, CardTitle, Breadcrumb,BreadcrumbItem} from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Loading } from "./Loadingcomponent";
 
-    function RenderMenuItem({dish,onClick}){
-        return(
-            <Card>
-                <CardImg src={dish.image} alt={dish.name} />
-                <CardBody>
-                    <CardTitle tag='h5'>{dish.name}</CardTitle>
-                </CardBody>
-                <Link to={`/menu/${dish.id}`}><button  className="btn btn-primary">See Details</button></Link>
-                
-            </Card>
+function RenderMenuItem({ dish, onClick }) {
+    return (
+        <Card>
+            <CardImg src={dish.image} alt={dish.name} />
+            <CardBody>
+                <CardTitle tag='h5'>{dish.name}</CardTitle>
+            </CardBody>
+            <Link to={`/menu/${dish.id}`}><button className="btn btn-primary">See Details</button></Link>
+
+        </Card>
+    );
+}
+
+const Menu = (props) => {
+    const menu = props.dishes.dishes.map((dish) => {
+        return (
+            <div key={dish.id} className="col-12 col-md-3 mt-4">
+                <RenderMenuItem dish={dish} onClick={props.onClick} />
+            </div>
+        );
+    });
+
+    if (props.dishes.isLoading) {
+        return (
+            <div className='container'>
+                <div className='row'>
+                    <Loading />
+                </div>
+            </div>
         );
     }
-
-    const Menu = (props) =>{
-        const menu = props.dishes.map((dish)=>{
-            return (
-                <div key = {dish.id} className="col-12 col-md-3 mt-4">
-                    <RenderMenuItem dish={dish} onClick = {props.onClick} />
+    else if (props.dishes.errMess) {
+        return (
+            <div className='container'>
+                <div className='row'>
+                    <h4>{props.dishes.errMess}</h4>
                 </div>
-            );
-        });
-        return(
+            </div>
+        );
+    }
+    else {
+        return (
             <div className="container">
                 <div className="row">
                     <Breadcrumb className='col-md-12'>
@@ -36,13 +57,13 @@ import { Link } from "react-router-dom";
                     </div>
                 </div>
                 <div className="row" >
-                        {menu}
+                    {menu}
                 </div>
-
-                
             </div>
         );
     }
+
+}
 
 
 

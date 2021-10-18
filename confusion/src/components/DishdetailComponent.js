@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Moment from "react-moment";
 import { Control, Errors, LocalForm } from 'react-redux-form';
 import { Loading } from './Loadingcomponent';
+import { baseUrl } from '../shared/baseUrl';
 
 const required = (val) => val && val.length
 
@@ -14,7 +15,7 @@ function RenderDish({ dish }) {
     return (
         <div className='col-12 col-md-6 p5'>
             <Card>
-                <CardImg width='100%' src={dish.image} alt={dish.name} />
+                <CardImg width='100%' src={baseUrl + dish.image} alt={dish.name} />
                 <CardBody>
                     <CardTitle tag='h4'>{dish.name}</CardTitle>
                     <CardText>{dish.description}</CardText>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Loading } from "./Loadingcomponent";
 import { baseUrl } from "../shared/baseUrl";
 
+
 function RenderMenuItem({ dish, onClick }) {
     return (
         <Card>

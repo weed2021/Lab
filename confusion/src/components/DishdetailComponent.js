@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, Button, ModalBody, FormGroup, Label, Col, Row } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, Button, ModalBody, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Moment from "react-moment";
 import { Control, Errors, LocalForm } from 'react-redux-form';
@@ -25,7 +25,7 @@ function RenderDish({ dish }) {
     );
 }
 
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({ comments, postComment, dishId }) {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
@@ -46,7 +46,7 @@ function RenderComments({ comments, addComment, dishId }) {
     });
 
     const handleSubmit = (values) => {
-        addComment(dishId, values.rating, values.author, values.comment);
+        postComment(dishId, values.rating, values.author, values.comment);
     }
     return (
         <div className='col-12 col-md-5 m-1'>
@@ -172,7 +172,7 @@ const DishDetail = (props) => {
         const comments = props.comments;
 
         const dishItem = <RenderDish dish={dish} />;
-        const dishComments = <RenderComments comments={comments} addComment={props.addComment} dishId={dish.id} />;
+        const dishComments = <RenderComments comments={comments} postComment={props.postComment} dishId={dish.id} />;
         return (
             <div className='container'>
                 <div className="row">
